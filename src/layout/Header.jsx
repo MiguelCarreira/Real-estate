@@ -1,11 +1,12 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Affix, Menu, Input } from 'antd';
+import { Affix, Menu, Input, Drawer } from 'antd';
 import { SearchOutlined, MenuOutlined } from '@ant-design/icons';
 import { useMediaQuery } from 'react-responsive';
 
+import Logo from 'components/Logo';
 import history from 'utils/history';
-import LogoSrc from 'assets/icons/logo-blast.svg';
 
 const suffix = (
   <SearchOutlined
@@ -31,16 +32,26 @@ const mobileMenuItems = [
   { key: 'ecossistema', label: 'Ecossistema' },
   { key: 'parceiros', label: 'Parceiros' },
   { key: 'definicoes', label: 'Definições' }
+];
 
-]
+const menuMobileDrawerItems = ({key, label}) => {
+  return (
+    <li key={key}>
+      <span>{label}</span>
+    </li>
+  )
+};
 
 const onSearch = (value) => console.log(value);
 
 const Header = () => {
+  const [openDrawer, setOpenDrawer] = useState(false);
 
   const isMobile = useMediaQuery({
     query: '(max-width: 414px)'
   })
+  
+
 
   const onSectionClicked = (key) => {
     if (key === 'blog') history.push('/blog/posts')
@@ -48,14 +59,12 @@ const Header = () => {
     else throw Error('No menu item matches.')
   };
 
+
   return (
     <StyledAffix>
       <StyledDiv>
         <Link to="/">
-          <StyledLogo
-            src={LogoSrc}
-            alt="logo"
-          />
+          <Logo />
         </Link>
         <StyledSearch
           placeholder=""
@@ -63,18 +72,46 @@ const Header = () => {
           suffix={suffix}
           onPressEnter={onSearch}
         />
-        <StyledMenu
-          mode="horizontal"
-          selectable={false}
-          overflowedIndicator={<StyledMenuOutlined />}
-          items={isMobile ? mobileMenuItems : menuItems}
-          onClick={({ key }) => onSectionClicked(key)}
-        />
+        { isMobile ? 
+          <>
+            <StyledMenuOutlined onClick={() => setOpenDrawer(true)} />
+            <StyledDrawer title={<Logo />} placement="right" onClose={()=> setOpenDrawer(false)} open={openDrawer}>
+              <StyledMenu
+                mode="vertical"
+                items={mobileMenuItems}
+                onClick={({ key }) => onSectionClicked(key)}
+              />
+            </StyledDrawer>
+          </>
+        :
+          <StyledMenu
+              mode="horizontal"
+              selectable={false}
+              overflowedIndicator={<StyledMenuOutlined />}
+              items={menuItems}
+              onClick={({ key }) => onSectionClicked(key)}
+            />
+        }
       </StyledDiv>
     </StyledAffix>
   );
 };
 
+const StyledDrawer = styled(Drawer)`
+  
+  .ant-drawer-header {
+    border-color: var(--primaryColor);
+  }
+  .ant-drawer-content {
+    background-color: var(--pageBackground);
+  }
+  .anticon-close {
+    color: var(--primaryColor);
+  }
+  .ant-menu {
+    border-color: transparent;
+  }
+`;
 const StyledMenuOutlined = styled(MenuOutlined)`
   color: var(--primaryColor);
   vertical-align: middle;
@@ -101,13 +138,10 @@ const StyledSearch = styled(Input)`
 const StyledDiv = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-left: 12px;
   padding-right: 12px;
   border-bottom: 1px solid var(--borderColor);
-`;
-const StyledLogo = styled.img`
-  height: 60px;
-  object-fit: contain;
 `;
 const StyledMenu = styled(Menu)`
   justify-content: center;
@@ -122,10 +156,6 @@ const StyledMenu = styled(Menu)`
     font-weight: 300;
     letter-spacing: 0.5px;
     align-items: center;
-
-    @media (max-width: 415px) {
-      width: 50px;
-    }
   }
   &.ant-menu .ant-menu-item > span > a {
     color: var(--textColor);
@@ -140,7 +170,8 @@ const StyledMenu = styled(Menu)`
   .ant-menu-submenu-open .ant-menu-submenu-title {
     color: #ff8abd;
   }
-  &.ant-menu-horizontal > .ant-menu-item:hover:after {
+  &.ant-menu-horizontal > .ant-menu-item:hover:after,
+  &.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-submenu:hover:after {
     border-bottom: 2px solid var(--primaryColor);
   }
   &.ant-menu-horizontal > .ant-menu-item:hover > span {

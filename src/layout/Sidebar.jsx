@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from "react-router-dom";
 import { useState } from 'react';
+
 import { ReactComponent as Arrow } from 'assets/icons/sidebar-arrow.svg';
 import * as sidebarRoutes from './sidebarRoutes';
 
@@ -32,7 +33,7 @@ const LinkItem = ({ slug, icon, page }) => (
   <StyledLink 
     key={slug} 
     to={slug} 
-    end //keep from the homepage be active all the time
+    end //keeping the homepage from being active all the time
   >
     {icon}
     <span>{page}</span>
