@@ -1,5 +1,6 @@
 # Real-estate
 This project was bootstrapped with [Vite](https://github.com/vitejs/vite).
+Draft [link](https://blast-8cf42.web.app/)
 
 A Real Estate app where users can look for their Castle.
 
