@@ -7,6 +7,7 @@ import { useMediaQuery } from 'react-responsive';
 
 import Logo from 'components/Logo';
 import history from 'utils/history';
+import { mobileMenuItems, footerMobileItems } from './sidebarRoutes';
 
 const suffix = (
   <SearchOutlined
@@ -23,24 +24,6 @@ const menuItems = [
   { key: 'whitepaper', label: 'Whitepaper' },
   { key: 'newsletter', label: 'Newsletter' }
 ];
-
-const mobileMenuItems = [
-  { key: 'whitepaper', label: 'Whitepaper' },
-  { key: 'newsletter', label: 'Newsletter' },
-  { key: 'servicos', label: 'Serviços' },
-  { key: 'referencias', label: 'Referências' },
-  { key: 'ecossistema', label: 'Ecossistema' },
-  { key: 'parceiros', label: 'Parceiros' },
-  { key: 'definicoes', label: 'Definições' }
-];
-
-const menuMobileDrawerItems = ({key, label}) => {
-  return (
-    <li key={key}>
-      <span>{label}</span>
-    </li>
-  )
-};
 
 const onSearch = (value) => console.log(value);
 
@@ -59,7 +42,6 @@ const Header = () => {
     else throw Error('No menu item matches.')
   };
 
-
   return (
     <StyledAffix>
       <StyledDiv>
@@ -75,7 +57,13 @@ const Header = () => {
         { isMobile ? 
           <>
             <StyledMenuOutlined onClick={() => setOpenDrawer(true)} />
-            <StyledDrawer title={<Logo />} placement="right" onClose={()=> setOpenDrawer(false)} open={openDrawer}>
+            <StyledDrawer
+              title={<StyledLogo />}
+              placement="right"
+              onClose={()=> setOpenDrawer(false)}
+              open={openDrawer}
+              footer={footerMobileItems}
+            >
               <StyledMenu
                 mode="vertical"
                 items={mobileMenuItems}
@@ -85,17 +73,23 @@ const Header = () => {
           </>
         :
           <StyledMenu
-              mode="horizontal"
-              selectable={false}
-              overflowedIndicator={<StyledMenuOutlined />}
-              items={menuItems}
-              onClick={({ key }) => onSectionClicked(key)}
-            />
+            mode="horizontal"
+            selectable={false}
+            overflowedIndicator={<StyledMenuOutlined />}
+            items={menuItems}
+            onClick={({ key }) => onSectionClicked(key)}
+          />
         }
       </StyledDiv>
     </StyledAffix>
   );
 };
+
+const StyledLogo = styled(Logo)`
+  & {
+    height: 100px;
+  }
+`;
 
 const StyledDrawer = styled(Drawer)`
   
@@ -166,6 +160,10 @@ const StyledMenu = styled(Menu)`
   }
   &.ant-menu-title-content {
     color: var(--textColor);
+
+    @media (max-width: 415px) {
+      font-size: 17px;
+    }
   }
   .ant-menu-submenu-open .ant-menu-submenu-title {
     color: #ff8abd;

@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 import LogoSrc from 'assets/icons/logo-blast.svg';
-function Logo() {
+function Logo(rest) {
   return (
     <StyledLogo
       src={LogoSrc}
       alt="Blast Logo"
+      {...rest}
     />
   )
 }
