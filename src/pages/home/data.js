@@ -9,8 +9,8 @@ const RealState = [
     alt: 'Imóvel X'
   },
   {
-    title: 'Imóveis em destaque',
-    text: 'Morada Típica Portuguesa Mafra, Mafra',
+    title: 'Morada Típica Portuguesa Mafra, Mafra',
+    text: 'lalala',
     price: '199 000',
     imgSrc: RealEstateHeroSrc,
     alt: 'Imóvel X'

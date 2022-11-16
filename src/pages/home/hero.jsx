@@ -33,14 +33,15 @@ export default () => {
   return (
     <HeroContainer>
       <StyledContainer>
+        <HeroTitle>Imóveis em Destaque</HeroTitle>
         <StyledCarousel arrows={ !isMobile ? true : false } {...SETTINGS}>
           { data.map(({title, text, price, imgSrc, alt}, index) => {
             return (
-              <div key={`imoveis-destaque${index}`}>
+              <div key={`imoveis-destaque-${index}`}>
                 <Row justify='space-around'>
                   <Col xs={0} sm={11}>
                     <Space direction="vertical">
-                      <HeroTitle>{title}</HeroTitle>
+                      <CarouselTitle>{title}</CarouselTitle>
                       <StyledText>{text}</StyledText>
                       <StyledText>{price}€</StyledText>
                     </Space>
@@ -68,13 +69,12 @@ export default () => {
   );
 };
 
-const StyledH1 = styled.h1`
-  color: var(--primaryColor);
+const HeroTitle = styled.h1`
   text-align: center;
-  font-size: 50px;
-  font-weight: 900;
   font-family: 'Montserrat';
-  border: 2px solid;
+  color: var(--textColor);
+  font-size: 5em;
+  font-weight: 700;
 `;
 
 const StyledCarousel = styled(Carousel)`
@@ -123,12 +123,13 @@ const StyledContainer = styled(Container)`
     padding: 0px;
   }
 `;
-const HeroTitle = styled(Typography.Title)`
+const CarouselTitle = styled(Typography.Title)`
   &&& {
     font-weight: 700;
     font-family: 'Montserrat';
     color: var(--textColor);
     font-size: 2.9rem;
+    line-height: 0.7;
   }
 `;
 const HeroContainer = styled.div`
