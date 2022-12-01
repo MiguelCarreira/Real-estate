@@ -9,6 +9,10 @@ import Facebook from 'assets/icons/facebook.svg';
 import Instagram from 'assets/icons/instagram.svg';
 import Twitter from 'assets/icons/twitter.svg';
 import Youtube from 'assets/icons/youtube.svg';
+import FacebookMobile from 'assets/icons/face-mobile.png';
+import InstagramMobile from 'assets/icons/insta-mobile.png';
+import TwitterMobile from 'assets/icons/twitter-mobile.png';
+import YoutubeMobile from 'assets/icons/youtube-mobile.png';
 
 const StyledImg = styled.img`
   width: 35px;
@@ -75,22 +79,22 @@ export const footerMobileItems = [
   {
     page: 'Facebook',
     pathname: `https://www.facebook.com/ecoblast.pt`,
-    icon: <StyledImg src={Facebook} alt="Facebook" />
+    icon: <StyledImg src={FacebookMobile} alt="Facebook" />
   },
   {
     page: 'Instagram',
-    pathname: `https://www.instagram.com/ecoblast.pt/`,
-    icon: <StyledImg src={Instagram} alt="Instagram" />
+    pathname: `https://www.instagram.com/ecoblast.pt`,
+    icon: <StyledImg src={InstagramMobile} alt="Instagram" />
   },
   {
     page: 'Twitter',
     pathname: `https://twitter.com/Ecoblastpt`,
-    icon: <StyledImg src={Twitter} alt="Twitter" />
+    icon: <StyledImg src={TwitterMobile} alt="Twitter" />
   },
   {
     page: 'Youtube',
     pathname: `https://www.youtube.com/channel/UCfieu15FLyobQEnVbQXXdkg`,
-    icon: <StyledImg src={Youtube} alt="Youtube" />
+    icon: <StyledImg src={YoutubeMobile} alt="Youtube" />
   },
 ];
 

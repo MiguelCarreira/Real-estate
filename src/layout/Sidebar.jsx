@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { NavLink,  Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useState } from 'react';
 
 import { ReactComponent as Arrow } from 'assets/icons/sidebar-arrow.svg';
@@ -30,7 +30,7 @@ const Sidebar = () => {
 };
 
 const LinkItem = ({ slug = null, icon, page, pathname = null }) => {
-  if ( slug) {
+  if ( slug ) {
     return (
       <StyledLink 
         key={slug} 

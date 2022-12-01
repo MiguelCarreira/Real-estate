@@ -27,6 +27,19 @@ const menuItems = [
 
 const onSearch = (value) => console.log(value);
 
+const FooterIcons = ({ icon, pathname = null }) => {
+  return (
+    <StyledAnchor
+      key={pathname} 
+      href={pathname}
+      target='_blank'
+      rel='noopener'
+    >
+      {icon}
+    </StyledAnchor>
+  )
+}
+
 const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
 
@@ -62,7 +75,7 @@ const Header = () => {
               placement="right"
               onClose={()=> setOpenDrawer(false)}
               open={openDrawer}
-              footer={footerMobileItems}
+              footer={footerMobileItems.map(FooterIcons)}
             >
               <StyledMenu
                 mode="vertical"
@@ -99,6 +112,11 @@ const StyledDrawer = styled(Drawer)`
   .ant-drawer-content {
     background-color: var(--pageBackground);
   }
+  .ant-drawer-footer {
+    border-top: 1px solid var(--primaryColor);
+    display: inline-flex;
+  }
+
   .anticon-close {
     color: var(--primaryColor);
   }
@@ -141,7 +159,7 @@ const StyledMenu = styled(Menu)`
   justify-content: center;
   &.ant-menu,
   .ant-menu-sub {
-    width: 333px;
+    width: 100%;
     background: transparent;
     border-bottom: 1px solid transparent;
     line-height: var(--menuHeight);
@@ -191,6 +209,44 @@ const StyledAffix = styled(Affix)`
   & > div:nth-child(2) {
     background-color: var(--pageBackground);
     transition: background-color 300ms;
+  }
+`;
+const StyledAnchor = styled.a`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 35px;
+  border-radius: 8px;
+  margin: 2.5px 0;
+
+  &.active,
+  &:hover {
+    background-color: var(--primaryColor);
+
+    & svg {
+      fill: var(--primaryColor);
+    }
+
+    & span {
+      color: var(--textColor);
+    }
+  }
+
+  & svg {
+    width: 17px;
+    height: auto;
+    fill: var(--sidebarColorInactive);
+  }
+
+  & span {
+    width: 100px;
+    left: 50px;
+    color: var(--sidebarColorInactive);
+    float: left;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
   }
 `;
 export default Header;
