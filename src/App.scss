@@ -59,33 +59,6 @@ body, html {
   --grayColor: #acacac;
 }
 
-.theme-light {
-  --menuHeight: 80px;
-  --coverHeight: 320px;
-  --sideBarWidth: 298px;
-  --orange: 245, 140, 31;
-  --pink: 163, 87, 127;
-  --background: #fff;
-  --componentBackground: #fcfbff;
-  --componentBgComplement: rgba(145,135,133,0.05);
-  --primaryColor: #f58c1f;
-  --orangeColor: rgb(var(--orange));
-  --pinkColor: rgb(var(--pink));
-  --linkColor: rgb(var(--orange));
-  --textColor: #000;
-  --iconColor: #f5891e;
-  --borderColor: #7450fe40;
-  --secondaryTextColor: #00000073;
-  --thirdColor: #00000088;
-  --fourthColor: #00000044;
-  --containerBgColor: #f2f2f4;
-  --altColor: #563fc1;
-  --footerBg: #e5e5e5;
-  --footerAltColor: #533cbe;
-  --activeItemColor: #f2f2f4;
-  --grayColor: #acacac;
-}
-
 body.body {
   overflow-x: hidden;
   font-size: 15px;
@@ -132,6 +105,16 @@ body.body {
   color: var(--textColor);
   &:hover {
     color: var(--linkColor);
+  }
+}
+.ant-menu-submenu-popup.ant-menu-submenu {
+  width: 100%;
+  left: 0px;
+  > ul {
+    height: 100vh;
+  }
+  > .ant-menu {
+    background-color: var(--sideBarBackground);
   }
 }
 .ant-modal-root {

@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { NavLink } from "react-router-dom";
 import { useState } from 'react';
+
 import { ReactComponent as Arrow } from 'assets/icons/sidebar-arrow.svg';
 import * as sidebarRoutes from './sidebarRoutes';
 
@@ -28,17 +29,32 @@ const Sidebar = () => {
   );
 };
 
-const LinkItem = ({ slug, icon, page }) => (
-  <StyledLink 
-    key={slug} 
-    to={slug} 
-    end //keep from the homepage be active all the time
-  >
-    {icon}
-    <span>{page}</span>
-  </StyledLink>
+const LinkItem = ({ slug = null, icon, page, pathname = null }) => {
+  if ( slug ) {
+    return (
+      <StyledLink 
+        key={slug} 
+        to={slug}
+        end //keeping the homepage from being active all the time
+      >
+        {icon}
+        <span>{page}</span>
+      </StyledLink>
+    )
+  }
 
-)
+  return (
+    <StyledAnchor
+      key={pathname} 
+      href={pathname}
+      target='_blank'
+      rel='noopener'
+    >
+      {icon}
+      <span>{page}</span>
+    </StyledAnchor>
+  )
+}
 
 const SidebarContainer = styled.div`
   flex-direction: column;
@@ -79,8 +95,7 @@ const Top = styled(ButtonContainer)`
 const Bottom = styled(ButtonContainer)`
   bottom: 0;
 `
-
-const StyledLink = styled(NavLink)`
+const LinkStyles = css`
   position: relative;
   display: flex;
   width: 100%;
@@ -116,8 +131,15 @@ const StyledLink = styled(NavLink)`
     top: 50%;
     transform: translateY(-50%);
   }
+`;
+
+const StyledLink = styled(NavLink)`
+  ${LinkStyles}
 `
 
+const StyledAnchor = styled.a`
+  ${LinkStyles}
+`;
 const StyledArrow = styled(Arrow)`
   top: 50%;
   transform: translate(45px, calc(30px - 50vh));

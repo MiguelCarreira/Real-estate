@@ -1,7 +1,8 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 import svgr from "vite-plugin-svgr";
-import { resolve, join } from 'path'
+import { resolve, join } from 'path';
+import svgLoader from 'vite-svg-loader';
 
 
 //const distDir = join(__dirname, './dist');
@@ -25,5 +26,7 @@ export default defineConfig({
   },
   plugins: [svgr(), react({
     include: "**/*.jsx",  //added to reload on changes
-  })]
+  }, svgLoader({
+    defaultImport: 'url' // or 'raw'
+  }))]
 })

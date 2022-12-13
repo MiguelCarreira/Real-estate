@@ -2,9 +2,17 @@ import styled from 'styled-components';
 import RealEstate from 'assets/icons/real-estate.svg';
 import Services from 'assets/icons/services.svg';
 import References from 'assets/icons/references.svg';
+import Configurations from 'assets/icons/configurations.svg';
 import Ecosystem from 'assets/icons/ecosystem.svg';
 import Partners from 'assets/icons/partners.svg';
-import Configurations from 'assets/icons/configurations.svg';
+import Facebook from 'assets/icons/facebook.svg';
+import Instagram from 'assets/icons/instagram.svg';
+import Twitter from 'assets/icons/twitter.svg';
+import Youtube from 'assets/icons/youtube.svg';
+import FacebookMobile from 'assets/icons/face-mobile.png';
+import InstagramMobile from 'assets/icons/insta-mobile.png';
+import TwitterMobile from 'assets/icons/twitter-mobile.png';
+import YoutubeMobile from 'assets/icons/youtube-mobile.png';
 
 const StyledImg = styled.img`
   width: 35px;
@@ -41,9 +49,88 @@ export const top = [
 
 export const bottom = [
   {
+    page: 'Facebook',
+    pathname: `https://www.facebook.com/ecoblast.pt`,
+    icon: <StyledImg src={Facebook} alt="Facebook" />
+  },
+  {
+    page: 'Instagram',
+    pathname: `https://www.instagram.com/ecoblast.pt/`,
+    icon: <StyledImg src={Instagram} alt="Instagram" />
+  },
+  {
+    page: 'Twitter',
+    pathname: `https://twitter.com/Ecoblastpt`,
+    icon: <StyledImg src={Twitter} alt="Twitter" />
+  },
+  {
+    page: 'Youtube',
+    pathname: `https://www.youtube.com/channel/UCfieu15FLyobQEnVbQXXdkg`,
+    icon: <StyledImg src={Youtube} alt="Youtube" />
+  },
+  {
     page: 'Geral',
     slug: `/definicoes`,
     icon: <StyledImg src={Configurations} alt="Definições" />
   }
 ]
 
+export const footerMobileItems = [
+  {
+    page: 'Facebook',
+    pathname: `https://www.facebook.com/ecoblast.pt`,
+    icon: <StyledImg src={FacebookMobile} alt="Facebook" />
+  },
+  {
+    page: 'Instagram',
+    pathname: `https://www.instagram.com/ecoblast.pt`,
+    icon: <StyledImg src={InstagramMobile} alt="Instagram" />
+  },
+  {
+    page: 'Twitter',
+    pathname: `https://twitter.com/Ecoblastpt`,
+    icon: <StyledImg src={TwitterMobile} alt="Twitter" />
+  },
+  {
+    page: 'Youtube',
+    pathname: `https://www.youtube.com/channel/UCfieu15FLyobQEnVbQXXdkg`,
+    icon: <StyledImg src={YoutubeMobile} alt="Youtube" />
+  },
+];
+
+
+export const mobileMenuItems = [
+  { 
+    key: 'whitepaper',
+    label: 'Whitepaper'
+  },
+  { 
+    key: 'newsletter',
+    label: 'Newsletter'
+  },
+  { 
+    key: 'servicos',
+    label: 'Serviços',
+    icon: <StyledImg src={Services} alt="Serviços" />
+  },
+  { 
+    key: 'referencias',
+    label: 'Referências',
+    icon: <StyledImg src={References} alt="Referências" />
+  },
+  { 
+    key: 'ecossistema',
+    label: 'Ecossistema',
+    icon: <StyledImg src={Ecosystem} alt="Ecossistema" />
+  },
+  { 
+    key: 'parceiros',
+    label: 'Parceiros',
+    icon: <StyledImg src={Partners} alt="Parceiros" />
+  },
+  { 
+    key: 'definicoes',
+    label: 'Definições',
+    icon: <StyledImg src={Configurations} alt="Definições" />
+  }
+];
